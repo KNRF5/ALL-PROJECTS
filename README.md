@@ -1,32 +1,70 @@
-# Portfolio de KNRF5
+# Portfolio KNRF5
 
-Un portfolio en français qui rassemble mes projets : applications Windows,
-outils d’intelligence artificielle, montage vidéo, jeux et projets web.
+Portfolio personnel présentant une sélection de projets dans plusieurs domaines : applications Windows, intelligence artificielle, montage vidéo, jeux et projets web.
 
-## Voir le site
+## Aperçu
+
+Ce projet est un site vitrine statique conçu pour présenter mes réalisations de manière claire et visuelle.
+
+- mise en avant des projets phares
+- catalogue complet avec filtres par catégorie
+- recherche rapide par mot-clé
+- interface responsive pour mobile et desktop
+- publication simple via GitHub Pages
+
+## Accès au site
 
 **[Ouvrir le portfolio](https://knrf5.github.io/ALL-PROJECTS/)**
 
-Si le site n’est pas encore accessible, active GitHub Pages une première fois :
+## Fonctionnalités
 
-1. Ouvre **Settings → Pages** dans ce dépôt.
-2. Dans **Build and deployment**, sélectionne **GitHub Actions** comme source.
-3. Vérifie l’exécution du workflow **Publish website** dans l’onglet **Actions**.
+- navigation rapide entre les projets
+- sélection par type de projet
+- espace dédié aux projets les plus représentatifs
+- design sobre, moderne et lisible
 
-Une fois le déploiement terminé, le site sera disponible à l’adresse ci-dessus.
+## Structure du dépôt
 
-## Contenu
+- [`index.html`](index.html) : page principale du portfolio
+- [`README.md`](README.md) : documentation du projet
 
-- Une sélection de projets mis en avant.
-- Un catalogue de projets avec filtres par catégorie et recherche.
-- Une mise en page adaptée aux téléphones et aux ordinateurs.
+## Lancer localement
 
-## Publication
+Comme il s’agit d’une page statique, il n’y a pas de dépendances ni de build à installer.
 
-Le site est une page statique : il n’y a ni dépendances ni étape de compilation.
-Le workflow défini dans [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
-publie le contenu du dépôt sur GitHub Pages à chaque mise à jour de la branche
-`main`. Il peut aussi être lancé manuellement depuis l’onglet **Actions**.
+1. Clone le dépôt.
+2. Ouvre le fichier [`index.html`](index.html) dans un navigateur.
+3. Ou lance un petit serveur local si tu préfères :
 
-Pour mettre à jour le portfolio, modifie [`index.html`](index.html), puis pousse
-tes changements sur `main`. Le workflow publiera la nouvelle version.
+```bash
+python -m http.server 8000
+```
+
+Puis ouvre : `http://localhost:8000`
+
+## Déploiement
+
+Le site est publié avec GitHub Pages.
+
+### Configuration GitHub Pages
+
+1. Ouvre les réglages du dépôt.
+2. Va dans **Settings → Pages**.
+3. Sélectionne **GitHub Actions** comme source.
+4. Vérifie que le workflow de publication s’exécute correctement.
+
+Le site est ensuite accessible via l’URL GitHub Pages du dépôt.
+
+## Mise à jour
+
+Pour modifier le portfolio :
+
+1. édite [`index.html`](index.html)
+2. valide le rendu dans le navigateur
+3. commit et pousse sur la branche `main`
+
+Le workflow de publication mettra automatiquement à jour le site.
+
+## À propos
+
+Ce portfolio a pour objectif de présenter mes compétences et mes projets de manière professionnelle, avec un rendu simple, lisible et efficace.
