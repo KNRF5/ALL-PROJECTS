@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Portfolio de KNRF5. Applications Windows, outils IA, montage vidéo, jeux et projets web.">
+  <title>Mes projets · KNRF5</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #10120f;
+      --panel: #191d17;
+      --border: #363e33;
+      --text: #f3f5ed;
+      --muted: #b9c1b3;
+      --accent: #d8fa8e;
+      --mono: ui-monospace, Consolas, monospace;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; background: var(--background); color: var(--text); line-height: 1.5; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    h1, h2, h3, p { margin: 0; }
+    .wrap { width: min(1160px, calc(100% - 64px)); margin-inline: auto; }
+    .bar, .section-head, .feature-body, .project-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .bar { min-height: 66px; border-bottom: 1px solid var(--border); }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font: 700 .9rem var(--mono); letter-spacing: .1em; }
+    .brand-mark { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 8px; background: var(--accent); color: #182210; font-size: .73rem; }
+    .nav-link { color: var(--muted); text-decoration: none; font-size: .86rem; }
+    .nav-link:hover { color: var(--accent); }
+    .hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px; padding: clamp(48px, 7.5vw, 102px) 0 43px; }
+    .kicker, .number, .stack, .eyebrow, .stat span { font-family: var(--mono); }
+    .kicker { color: var(--accent); font-size: .79rem; letter-spacing: .15em; text-transform: uppercase; }
+    .kicker::before { content: ""; display: inline-block; width: 7px; height: 7px; margin: 0 11px 2px 0; border-radius: 50%; background: currentColor; }
+    h1 { margin: 8px 0 14px; font-size: clamp(3.7rem, 11vw, 8rem); line-height: .94; letter-spacing: -.09em; }
+    h1 span { color: var(--accent); }
+    .intro { max-width: 46ch; color: var(--muted); font-size: clamp(1rem, 2.2vw, 1.16rem); }
+    .stat { padding: 0 0 5px 25px; border-left: 1px solid var(--border); }
+    .stat strong { display: block; color: var(--accent); font-size: clamp(2.8rem, 6vw, 4.4rem); line-height: 1; letter-spacing: -.085em; }
+    .stat span { color: var(--muted); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+    .section-head { align-items: end; margin-bottom: 17px; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.25rem); line-height: 1.05; letter-spacing: -.045em; }
+    .eyebrow { color: var(--muted); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+    .feature-grid, .directory { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .feature { --tone: #d8fa8e; --surface: #25331f; display: block; overflow: hidden; border: 1px solid var(--border); border-radius: 15px; background: var(--panel); text-decoration: none; }
+    .feature-2 { --tone: #c9b8ff; --surface: #2b223d; }
+    .feature-3 { --tone: #a2eddd; --surface: #183632; }
+    .feature:hover { border-color: var(--tone); }
+    .feature-art { display: grid; place-items: center; height: 139px; border-bottom: 1px solid var(--border); background: repeating-linear-gradient(0deg, transparent 0 20px, #ffffff13 20px 21px), repeating-linear-gradient(90deg, transparent 0 20px, #ffffff13 20px 21px), radial-gradient(ellipse at center, var(--surface), #141914 92%); }
+    .feature-art svg { width: min(72%, 220px); height: 127px; stroke: var(--tone); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+    .bright { stroke-width: 2.5; }
+    .feature-body { padding: 14px 16px 16px; }
+    .feature-body h3, .project h3 { font-size: 1.18rem; line-height: 1.2; letter-spacing: -.025em; }
+    .feature-body p { margin-top: 4px; color: var(--muted); font-size: .84rem; }
+    .feature-body > span { color: var(--tone); font-size: 1.23rem; }
+    .catalogue { margin-top: 52px; }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 0 0 19px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 7px; }
+    button, input { font: inherit; }
+    .filters button, .search { min-height: 41px; padding: 7px 12px; color: var(--text); border: 1px solid var(--border); border-radius: 8px; background: var(--panel); font-size: .83rem; }
+    .filters button { cursor: pointer; }
+    .filters button:hover { border-color: var(--accent); }
+    .filters button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: #182210; font-weight: 750; }
+    .search { margin-left: auto; flex: 1 1 205px; max-width: 240px; }
+    .search::placeholder { color: var(--muted); }
+    .project { display: flex; flex-direction: column; min-width: 0; min-height: 180px; padding: 15px 16px 14px; scroll-margin-top: 16px; border: 1px solid var(--border); border-radius: 13px; background: var(--panel); }
+    .project:target { border-color: var(--accent); }
+    .category { color: var(--accent); font-size: .77rem; font-weight: 700; }
+    .category > span { margin-right: 4px; }
+    .category.ia { color: #cbbdff; }
+    .category.video { color: #ffc69d; }
+    .category.jeux { color: #9ceada; }
+    .category.web { color: #a8ceff; }
+    .number { color: var(--muted); font-size: .72rem; }
+    .project h3 { margin-top: 12px; overflow-wrap: anywhere; }
+    .description { margin: 7px 0 12px; color: var(--muted); font-size: .91rem; }
+    .stack { margin-top: auto; color: #cdd5c8; font-size: .72rem; }
+    .empty { padding: 24px 0; color: var(--muted); }
+    .foot { margin-top: 42px; padding: 20px 0 30px; border-top: 1px solid var(--border); color: var(--muted); font: .8rem var(--mono); }
+    @media (max-width: 900px) { .directory { grid-template-columns: repeat(2, minmax(0, 1fr)); } .search { margin-left: 0; } }
+    @media (max-width: 640px) {
+      .wrap { width: calc(100% - 32px); }
+      .hero { grid-template-columns: 1fr; gap: 19px; padding: 44px 0 29px; }
+      .stat { display: flex; align-items: baseline; gap: 8px; padding: 0; border: 0; }
+      .stat strong { font-size: 1.45rem; }
+      .feature-grid, .directory { grid-template-columns: 1fr; gap: 10px; }
+      .feature-art { height: 104px; }
+      .feature-art svg { height: 102px; }
+      .section-head { align-items: start; }
+      .catalogue { margin-top: 38px; }
+      .project { min-height: auto; }
+      .search { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="bar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span> KNRF5</div>
+      <a class="nav-link" href="#catalogue">Tous les projets <span aria-hidden="true">↓</span></a>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="kicker">Portfolio personnel</p>
+          <h1 id="page-title">Mes projets<span>.</span></h1>
+          <p class="intro">Les projets que je développe sur mon PC, des applications Windows aux jeux, en passant par l’IA et le montage vidéo.</p>
+        </div>
+        <p class="stat"><strong>32</strong> <span>projets présentés</span></p>
+      </section>
+      <section aria-labelledby="featured-title">
+        <div class="section-head"><h2 id="featured-title">À la une</h2></div>
+        <div class="feature-grid">
+          <a href="#fluxscale" class="feature feature-1">
+            <div class="feature-art" aria-hidden="true"><svg viewBox="0 0 220 128" fill="none" focusable="false"><path d="M35 99h150M52 37h116M42 50h136l13 32H29z"/><path d="M46 72h128M61 60h98"/><path class="bright" d="M78 84l32-32 32 32M110 53v49"/></svg></div>
+            <div class="feature-body"><div><h3>FluxScale</h3><p>Upscaling et génération d’images</p></div><span aria-hidden="true">↘</span></div>
+          </a>
+          <a href="#gamehub-x" class="feature feature-2">
+            <div class="feature-art" aria-hidden="true"><svg viewBox="0 0 220 128" fill="none" focusable="false"><rect x="37" y="31" width="146" height="77" rx="9"/><path d="M37 48h146M58 66h29v27H58zM97 66h29v27H97zM136 66h29v27h-29z"/><path class="bright" d="M107 80h10m-5-5v10M58 39h12"/></svg></div>
+            <div class="feature-body"><div><h3>GameHub X</h3><p>Bibliothèque et suivi des sessions</p></div><span aria-hidden="true">↘</span></div>
+          </a>
+          <a href="#naviperso" class="feature feature-3">
+            <div class="feature-art" aria-hidden="true"><svg viewBox="0 0 220 128" fill="none" focusable="false"><rect x="36" y="32" width="148" height="76" rx="9"/><path d="M36 52h148M45 64h41v32H45zM100 68h65m-65 12h48m-48 12h34"/><path class="bright" d="M76 53v-13h48v13M48 42h13"/></svg></div>
+            <div class="feature-body"><div><h3>NaviPerso</h3><p>Navigateur de bureau</p></div><span aria-hidden="true">↘</span></div>
+          </a>
+        </div>
+      </section>
+      <section id="catalogue" class="catalogue" aria-labelledby="catalogue-title">
+        <div class="section-head">
+          <h2 id="catalogue-title">Tous les projets</h2>
+          <p id="result-count" class="eyebrow" role="status">32 projets</p>
+        </div>
+        <div id="controls" class="controls" hidden>
+          <div class="filters" role="group" aria-label="Filtrer par catégorie">
+            <button type="button" data-filter="all" aria-pressed="true">Tout</button>
+            <button type="button" data-filter="windows" aria-pressed="false">Windows</button>
+            <button type="button" data-filter="ia" aria-pressed="false">IA et développement</button>
+            <button type="button" data-filter="video" aria-pressed="false">Montage vidéo</button>
+            <button type="button" data-filter="jeux" aria-pressed="false">Jeux et mods</button>
+            <button type="button" data-filter="web" aria-pressed="false">Web et bots</button>
+          </div>
+          <input id="search" class="search" type="search" placeholder="Rechercher un projet…" aria-label="Rechercher un projet">
+        </div>
+        <div class="directory">
+          <article class="project" id="fluxscale" data-group="windows" aria-labelledby="title-0">
+            <div class="project-top"><span class="category windows"><span aria-hidden="true">▣</span> Windows</span><span class="number" aria-hidden="true">01</span></div>
+            <h3 id="title-0">FluxScale</h3>
+            <p class="description">Agrandissement d’image et génération d’images intermédiaires pour les applications et les jeux sous Windows.</p>
+            <p class="stack">Rust · Direct3D 11</p>
+          </article>
+          <article class="project" id="gamehub-x" data-group="windows" aria-labelledby="title-1">
+            <div class="project-top"><span class="category windows"><span aria-hidden="true">▣</span> Windows</span><span class="number" aria-hidden="true">02</span></div>
+            <h3 id="title-1">GameHub X</h3>
+            <p class="description">Un lanceur qui rassemble les jeux Steam, Epic et GOG et suit le temps passé sur chaque jeu.</p>
+            <p class="stack">Rust · Tauri</p>
+          </article>
+          <article class="project" id="naviperso" data-group="windows" aria-labelledby="title-2">
+            <div class="project-top"><span class="category windows"><span aria-hidden="true">▣</span> Windows</span><span class="number" aria-hidden="true">03</span></div>
+            <h3 id="title-2">NaviPerso</h3>
+            <p class="description">Un navigateur Windows avec gestion des onglets, historique, réglages et bloqueur de publicités.</p>
+            <p class="stack">Rust · Tauri</p>
+          </article>
+          <article class="project" id="visualboost" data-group="windows" aria-labelledby="title-3">
+            <div class="project-top"><span class="category windows"><span aria-hidden="true">▣</span> Windows</span><span class="number" aria-hidden="true">04</span></div>
+            <h3 id="title-3">VisualBoost</h3>
+            <p class="description">Des profils de couleur et de luminosité par écran, avec bascule de profil au lancement d’un jeu.</p>
+            <p class="stack">Rust · Win32</p>
+          </article>
+          <article class="project" id="explorateur-v3" data-group="windows" aria-labelledby="title-4">
+            <div class="project-top"><span class="category windows"><span aria-hidden="true">▣</span> Windows</span><span class="number" aria-hidden="true">05</span></div>
+            <h3 id="title-4">Explorateur V3</h3>
+            <p class="description">Un gestionnaire de fichiers à deux panneaux, avec recherche, édition et inspection de fichiers.</p>
+            <p class="stack">Rust · egui</p>
+          </article>
+          <article class="project" id="winoptishield" data-group="windows" aria-labelledby="title-5">
+            <div class="project-top"><span class="category windows"><span aria-hidden="true">▣</span> Windows</span><span class="number" aria-hidden="true">06</span></div>
+            <h3 id="title-5">WinOptiShield</h3>
+            <p class="description">Un outil d’optimisation Windows qui enregistre les réglages modifiés et permet de les restaurer.</p>
+            <p class="stack">Rust · Windows</p>
+          </article>
+          <article class="project" id="all-ressources-fusion" data-group="windows" aria-labelledby="title-6">
+            <div class="project-top"><span class="category windows"><span aria-hidden="true">▣</span> Windows</span><span class="number" aria-hidden="true">07</span></div>
+            <h3 id="title-6">All Ressources Fusion</h3>
+            <p class="description">Une boîte à outils Windows qui regroupe diagnostic, optimisation et plusieurs utilitaires dans une même interface.</p>
+            <p class="stack">Electron</p>
+          </article>
+          <article class="project" id="aion" data-group="ia" aria-labelledby="title-7">
+            <div class="project-top"><span class="category ia"><span aria-hidden="true">✳</span> IA et développement</span><span class="number" aria-hidden="true">08</span></div>
+            <h3 id="title-7">AION</h3>
+            <p class="description">Un atelier pour piloter des agents de développement, organiser les sessions et examiner les changements apportés aux fichiers.</p>
+            <p class="stack">Electron · JavaScript</p>
+          </article>
+          <article class="project" id="aura-gaming-coach" data-group="ia" aria-labelledby="title-8">
+            <div class="project-top"><span class="category ia"><span aria-hidden="true">✳</span> IA et développement</span><span class="number" aria-hidden="true">09</span></div>
+            <h3 id="title-8">AURA Gaming Coach</h3>
+            <p class="description">Un compagnon animé pour discuter à la voix, reconnaître le jeu en cours et expérimenter le coaching à partir de l’écran.</p>
+            <p class="stack">Python · Bureau</p>
+          </article>
+          <article class="project" id="zia-panel" data-group="ia" aria-labelledby="title-9">
+            <div class="project-top"><span class="category ia"><span aria-hidden="true">✳</span> IA et développement</span><span class="number" aria-hidden="true">10</span></div>
+            <h3 id="title-9">ZIA Panel</h3>
+            <p class="description">Un analyseur qui passe en revue les projets de développement, calcule un score et signale les points à vérifier.</p>
+            <p class="stack">Rust · Terminal</p>
+          </article>
+          <article class="project" id="omniengine" data-group="ia" aria-labelledby="title-10">
+            <div class="project-top"><span class="category ia"><span aria-hidden="true">✳</span> IA et développement</span><span class="number" aria-hidden="true">11</span></div>
+            <h3 id="title-10">OmniEngine</h3>
+            <p class="description">Un moteur expérimental pour orchestrer des agents IA depuis le terminal ou une interface web.</p>
+            <p class="stack">Rust · Terminal et web</p>
+          </article>
+          <article class="project" id="nexus-v4" data-group="ia" aria-labelledby="title-11">
+            <div class="project-top"><span class="category ia"><span aria-hidden="true">✳</span> IA et développement</span><span class="number" aria-hidden="true">12</span></div>
+            <h3 id="title-11">NEXUS V4</h3>
+            <p class="description">Un environnement expérimental pour planifier des tâches d’agents, enregistrer les étapes et vérifier les résultats.</p>
+            <p class="stack">Rust · Prototype</p>
+          </article>
+          <article class="project" id="lightcode" data-group="ia" aria-labelledby="title-12">
+            <div class="project-top"><span class="category ia"><span aria-hidden="true">✳</span> IA et développement</span><span class="number" aria-hidden="true">13</span></div>
+            <h3 id="title-12">LightCode</h3>
+            <p class="description">Une base d’éditeur de code natif avec explorateur de fichiers et modules d’assistance IA.</p>
+            <p class="stack">Rust · Prototype</p>
+          </article>
+          <article class="project" id="opencode-v2" data-group="ia" aria-labelledby="title-13">
+            <div class="project-top"><span class="category ia"><span aria-hidden="true">✳</span> IA et développement</span><span class="number" aria-hidden="true">14</span></div>
+            <h3 id="title-13">OpenCode V2</h3>
+            <p class="description">Une interface pour choisir des modèles IA en ligne et configurer leur routage depuis un même atelier.</p>
+            <p class="stack">JavaScript · Web</p>
+          </article>
+          <article class="project" id="opencode-plus" data-group="ia" aria-labelledby="title-14">
+            <div class="project-top"><span class="category ia"><span aria-hidden="true">✳</span> IA et développement</span><span class="number" aria-hidden="true">15</span></div>
+            <h3 id="title-14">OpenCode Plus</h3>
+            <p class="description">Un lanceur qui facilite la reprise d’une session OpenCode et l’application de réglages par projet.</p>
+            <p class="stack">PowerShell · Windows</p>
+          </article>
+          <article class="project" id="opt-on-top" data-group="ia" aria-labelledby="title-15">
+            <div class="project-top"><span class="category ia"><span aria-hidden="true">✳</span> IA et développement</span><span class="number" aria-hidden="true">16</span></div>
+            <h3 id="title-15">OPT ON TOP</h3>
+            <p class="description">Un prototype qui répartit le travail de développement entre des agents chargés de la conception, du code et de la vérification.</p>
+            <p class="stack">Node.js · Bureau</p>
+          </article>
+          <article class="project" id="novacut-studio" data-group="video" aria-labelledby="title-16">
+            <div class="project-top"><span class="category video"><span aria-hidden="true">▷</span> Montage vidéo</span><span class="number" aria-hidden="true">17</span></div>
+            <h3 id="title-16">NovaCut Studio</h3>
+            <p class="description">Un éditeur vidéo multipiste en français, avec textes, effets, musique et export du montage.</p>
+            <p class="stack">Rust · Windows</p>
+          </article>
+          <article class="project" id="automontage" data-group="video" aria-labelledby="title-17">
+            <div class="project-top"><span class="category video"><span aria-hidden="true">▷</span> Montage vidéo</span><span class="number" aria-hidden="true">18</span></div>
+            <h3 id="title-17">AutoMontage</h3>
+            <p class="description">Un outil de montage automatique qui traite les vidéos avec FFmpeg et utilise l’encodage matériel quand il est disponible.</p>
+            <p class="stack">Rust · FFmpeg</p>
+          </article>
+          <article class="project" id="montage-studio-auto" data-group="video" aria-labelledby="title-18">
+            <div class="project-top"><span class="category video"><span aria-hidden="true">▷</span> Montage vidéo</span><span class="number" aria-hidden="true">19</span></div>
+            <h3 id="title-18">Montage Studio Auto</h3>
+            <p class="description">Un studio qui assemble vidéos, photos et sons selon une durée, un format et un style choisis.</p>
+            <p class="stack">JavaScript · Studio local</p>
+          </article>
+          <article class="project" id="montageshorts" data-group="video" aria-labelledby="title-19">
+            <div class="project-top"><span class="category video"><span aria-hidden="true">▷</span> Montage vidéo</span><span class="number" aria-hidden="true">20</span></div>
+            <h3 id="title-19">MontageShorts</h3>
+            <p class="description">Une application qui prépare une version YouTube et une version Shorts avec sous-titres.</p>
+            <p class="stack">Python · Whisper</p>
+          </article>
+          <article class="project" id="montix" data-group="video" aria-labelledby="title-20">
+            <div class="project-top"><span class="category video"><span aria-hidden="true">▷</span> Montage vidéo</span><span class="number" aria-hidden="true">21</span></div>
+            <h3 id="title-20">Montix</h3>
+            <p class="description">Un atelier qui repère les moments forts d’une vidéo et les transforme en clips verticaux avec sous-titres animés.</p>
+            <p class="stack">Python · Bureau</p>
+          </article>
+          <article class="project" id="localcut-ai-studio" data-group="video" aria-labelledby="title-21">
+            <div class="project-top"><span class="category video"><span aria-hidden="true">▷</span> Montage vidéo</span><span class="number" aria-hidden="true">22</span></div>
+            <h3 id="title-21">LocalCut AI Studio</h3>
+            <p class="description">Un prototype de montage automatique qui adapte la sélection des plans à la durée et au format souhaités.</p>
+            <p class="stack">Rust · Windows</p>
+          </article>
+          <article class="project" id="cyber-duel-1v1" data-group="jeux" aria-labelledby="title-22">
+            <div class="project-top"><span class="category jeux"><span aria-hidden="true">◇</span> Jeux et mods</span><span class="number" aria-hidden="true">23</span></div>
+            <h3 id="title-22">Cyber Duel 1v1</h3>
+            <p class="description">Un prototype de jeu de duel en 3D pour Windows.</p>
+            <p class="stack">Three.js · 3D</p>
+          </article>
+          <article class="project" id="anarchy-sandbox" data-group="jeux" aria-labelledby="title-23">
+            <div class="project-top"><span class="category jeux"><span aria-hidden="true">◇</span> Jeux et mods</span><span class="number" aria-hidden="true">24</span></div>
+            <h3 id="title-23">Anarchy Sandbox</h3>
+            <p class="description">Un prototype de jeu de survie en 3D avec construction par blocs et exploration.</p>
+            <p class="stack">Three.js · 3D</p>
+          </article>
+          <article class="project" id="jeu-rts-multijoueur" data-group="jeux" aria-labelledby="title-24">
+            <div class="project-top"><span class="category jeux"><span aria-hidden="true">◇</span> Jeux et mods</span><span class="number" aria-hidden="true">25</span></div>
+            <h3 id="title-24">Jeu RTS multijoueur</h3>
+            <p class="description">Un prototype de stratégie en temps réel avec des salons multijoueurs et une simulation côté serveur.</p>
+            <p class="stack">Node.js · WebSocket</p>
+          </article>
+          <article class="project" id="wiki-royale" data-group="jeux" aria-labelledby="title-25">
+            <div class="project-top"><span class="category jeux"><span aria-hidden="true">◇</span> Jeux et mods</span><span class="number" aria-hidden="true">26</span></div>
+            <h3 id="title-25">Wiki Royale</h3>
+            <p class="description">Un jeu qui combine des combats d’arène, un deck de cartes et un camp à améliorer.</p>
+            <p class="stack">Jeu web · Mobile et PC</p>
+          </article>
+          <article class="project" id="miam-monde" data-group="jeux" aria-labelledby="title-26">
+            <div class="project-top"><span class="category jeux"><span aria-hidden="true">◇</span> Jeux et mods</span><span class="number" aria-hidden="true">27</span></div>
+            <h3 id="title-26">Miam Monde</h3>
+            <p class="description">Un jeu de plateau autour de plats du monde, avec des albums à compléter et des mini-jeux.</p>
+            <p class="stack">Jeu web · Mobile et PC</p>
+          </article>
+          <article class="project" id="zombie-apocalypse" data-group="jeux" aria-labelledby="title-27">
+            <div class="project-top"><span class="category jeux"><span aria-hidden="true">◇</span> Jeux et mods</span><span class="number" aria-hidden="true">28</span></div>
+            <h3 id="title-27">Zombie Apocalypse</h3>
+            <p class="description">Un mod Minecraft qui transforme le début de partie en aventure de survie dans une ville envahie de zombies.</p>
+            <p class="stack">Java · Fabric</p>
+          </article>
+          <article class="project" id="hypixelskyblockultimate" data-group="jeux" aria-labelledby="title-28">
+            <div class="project-top"><span class="category jeux"><span aria-hidden="true">◇</span> Jeux et mods</span><span class="number" aria-hidden="true">29</span></div>
+            <h3 id="title-28">HypixelSkyblockUltimate</h3>
+            <p class="description">Un projet de mod client dédié à Minecraft SkyBlock, avec des outils pour reconnaître les zones du jeu.</p>
+            <p class="stack">Java · Fabric</p>
+          </article>
+          <article class="project" id="atelier-pc" data-group="web" aria-labelledby="title-29">
+            <div class="project-top"><span class="category web"><span aria-hidden="true">↗</span> Web et bots</span><span class="number" aria-hidden="true">30</span></div>
+            <h3 id="title-29">Atelier PC</h3>
+            <p class="description">Un site pour présenter des services de dépannage informatique et recueillir des demandes d’aide.</p>
+            <p class="stack">JavaScript · Web</p>
+          </article>
+          <article class="project" id="guardian-bot" data-group="web" aria-labelledby="title-30">
+            <div class="project-top"><span class="category web"><span aria-hidden="true">↗</span> Web et bots</span><span class="number" aria-hidden="true">31</span></div>
+            <h3 id="title-30">Guardian Bot</h3>
+            <p class="description">Un bot Discord avec règlement interactif et fonctions de modération pour les serveurs.</p>
+            <p class="stack">Node.js · Discord</p>
+          </article>
+          <article class="project" id="simulation-de-trading" data-group="web" aria-labelledby="title-31">
+            <div class="project-top"><span class="category web"><span aria-hidden="true">↗</span> Web et bots</span><span class="number" aria-hidden="true">32</span></div>
+            <h3 id="title-31">Simulation de trading</h3>
+            <p class="description">Un bac à sable pour expérimenter des stratégies sur des transactions simulées.</p>
+            <p class="stack">Rust · Prototype</p>
+          </article>
+        </div>
+        <p class="empty" id="empty" hidden>Aucun projet ne correspond à cette recherche.</p>
+      </section>
+    </main>
+    <footer class="foot">KNRF5 · Portfolio de projets</footer>
+  </div>
+  <script>
+    const controls = document.querySelector("#controls");
+    const buttons = [...controls.querySelectorAll("[data-filter]")];
+    const search = document.querySelector("#search");
+    const count = document.querySelector("#result-count");
+    const empty = document.querySelector("#empty");
+    const normalize = (value) => value.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "");
+    const projects = [...document.querySelectorAll(".project")].map((card) => ({
+      card,
+      text: normalize(card.textContent)
+    }));
+    let category = "all";
+
+    function update() {
+      const query = normalize(search.value.trim());
+      let visible = 0;
+      for (const { card, text } of projects) {
+        const matches = (category === "all" || card.dataset.group === category) && text.includes(query);
+        card.hidden = !matches;
+        if (matches) visible += 1;
+      }
+      count.textContent = visible + (visible === 1 ? " projet" : " projets");
+      empty.hidden = visible > 0;
+    }
+
+    function selectCategory(value) {
+      category = value;
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.filter === value));
+      update();
+    }
+
+    for (const button of buttons) {
+      button.addEventListener("click", () => selectCategory(button.dataset.filter));
+    }
+    search.addEventListener("input", update);
+
+    function showLinkedProject() {
+      const target = projects.find(({ card }) => "#" + card.id === location.hash);
+      if (!target || !target.card.hidden) return;
+      search.value = "";
+      selectCategory("all");
+      target.card.scrollIntoView();
+    }
+
+    window.addEventListener("hashchange", showLinkedProject);
+    for (const link of document.querySelectorAll(".feature")) link.addEventListener("click", () => {
+      const target = projects.find(({ card }) => "#" + card.id === link.hash);
+      if (target?.card.hidden) {
+        search.value = "";
+        selectCategory("all");
+      }
+    });
+    controls.hidden = false;
+  </script>
+</body>
+</html>
